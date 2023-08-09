@@ -34,6 +34,9 @@ jobs:
       - name: Установка python и окружения
         uses: actions/setup-python@v3
 
+      - name: Переход в подпапку
+        run: cd /home/astralista/3.2-crud/stocks_products/
+
       - name: Установка зависимостей
         run: pip install -r requirements.txt
 
