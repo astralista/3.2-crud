@@ -26,11 +26,7 @@ jobs:
           POSTGRES_PASSWORD: ${{ env.DB_PASSWORD }}
         ports:
           - 5432:5432
-        options:
-          --health-cmd pg-isready
-          --health-interval 5s
-          --health-timeout 5s
-          --health-retries 5
+
     steps:
       - name: Проверка наличия изменений
         uses: actions/checkout@v3
