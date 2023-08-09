@@ -46,7 +46,7 @@ jobs:
         run: flake8 stocks_products/logistic/ --exclude stocks_products/logistic/migrations/
 
       - name: Тестирование кода
-        run: python manage.py test
+        run: cd stocks_products/; python manage.py test
         env:
           SECRET_KEY: ${{ env.SECRET_KEY }}
           DEBUG: ${{ env.DEBUG }}
