@@ -43,7 +43,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Линтинг кода
-        run: flake8 stocks_products/logistic/ --exclude logistic/migrations/
+        run: flake8 stocks_products/logistic/ --exclude stocks_products/logistic/migrations/
 
       - name: Тестирование кода
         run: python manage.py test
