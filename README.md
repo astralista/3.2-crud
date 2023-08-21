@@ -16,3 +16,8 @@ docker run -p 8000:8000 my-django-app
 ```commandline
 http://localhost:8000/api/v1/
 ```
+либо запускать готовые наборы запросов используя VS Code
+файл с запросами ***requests-examples.http*** лежит тут:
+```commandline
+/stocks_products/requests-examples.http
+```
