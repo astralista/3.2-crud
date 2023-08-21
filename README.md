@@ -1,9 +1,18 @@
-# CRUD
+### Порядок действий:
 
-Необходимо выполнить и предоставить на проверку задачу:
-
-[Склады и товары](./stocks_products).
-
-Работа должна соответствовать принятому [стилю оформления кода](https://github.com/netology-code/codestyle/tree/master/python).
-
-Любые вопросы по решению задач задавайте в чате учебной группы.
+в терминале перейти в папку 'stocks_products'
+```commandline
+cd stocks_products
+```
+создаем docker-container
+```commandline
+docker build -t my-django-app .
+```
+запускаем
+```commandline
+docker run -p 8000:8000 my-django-app
+```
+затем можно обращаться по этому адресу:
+```commandline
+http://localhost:8000/api/v1/
+```
