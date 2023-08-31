@@ -1,10 +1,23 @@
 version: '3'
 
 services:
+  web:
+    build: ./
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+             python manage.py makemigrations &&
+             python manage.py migrate"
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+
   postgres:
-    image: postgres:latest
+    image: 'postgres:latest'
+    ports:
+      - 5432:5432
     environment:
-      POSTGRES_DB: netology_stocks_products
+      POSTGRES_DB: postgres_DB
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
 
@@ -12,9 +25,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: gunicorn logistic.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn stocks_products.wsgi:application --bind 0.0.0.0:8000
     volumes:
-      - .:/code
+      - .:/code/static
     depends_on:
       - postgres
 
@@ -23,7 +36,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - backend
+    restart: unless-stopped
