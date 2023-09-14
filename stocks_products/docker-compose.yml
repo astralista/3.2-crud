@@ -1,12 +1,16 @@
 version: '3'
 
+volumes:
+  web_static:
+
 services:
   web:
     build: ./
     command: >
       sh -c "python manage.py collectstatic --noinput &&
-             python manage.py makemigrations &&
-             python manage.py migrate"
+      python manage.py makemigrations &&
+      python manage.py migrate &&
+      python manage.py runserver 0.0.0.0:8000"
     ports:
       - 8000:8000
     depends_on:
@@ -37,6 +41,7 @@ services:
       - "80:80"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+      - web_static:/code/static
     depends_on:
       - backend
     restart: unless-stopped
